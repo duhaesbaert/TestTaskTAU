@@ -13,7 +13,8 @@ public class BillChanger {
         this.coin = coin;
     }
 
-    public List<Double> getChange(double amount) {
+    // getChange returns a list of coins for the amount that has been requested change.
+    public List<Double> getChange(double amount, boolean mostAmountOfCoins) {
         BigDecimal remainingAmount = BigDecimal.valueOf(amount);
         List<Double> change = new ArrayList<>();
         List<Double> sortedCoins = new ArrayList<>(coin.getCoinDenominations());
@@ -31,11 +32,11 @@ public class BillChanger {
         if (remainingAmount.compareTo(BigDecimal.ZERO) == 0) {
             return change;
         } else {
-            System.out.println("Not enough coins available to make the exact change.");
             return new ArrayList<>();
         }
     }
 
+    // MakeDeposit allows a new amount of coins to be added to the avialable coins for change
     public void MakeDeposit(Double typeCoin, int amount) {
         coin.depositCoins(typeCoin,amount);
     }

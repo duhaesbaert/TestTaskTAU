@@ -1,8 +1,5 @@
 package com.BillChanger;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,7 +25,7 @@ public class Coin {
     // getAmount returns teh amount of coins available for the specified coin
     public int getAmount(Double coin) {
         Integer amount = availableCoins.get(coin);
-        return amount != null ? amount : 0; // Return 0 if the coin is not found
+        return amount != null ? amount : 0;
     }
 
     // updateAmount replaces the amount of coins for a specified coin
@@ -53,6 +50,7 @@ public class Coin {
         }
     }
 
+    // getCoinDenominations provides a list of coins available
     public List<Double> getCoinDenominations() {
         return new ArrayList<>(availableCoins.keySet());
     }

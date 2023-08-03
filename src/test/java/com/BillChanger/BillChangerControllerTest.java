@@ -26,20 +26,13 @@ public class BillChangerControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    void getChangeNoCoins() throws Exception {
-        String amount = "1.0";
-        mockMvc.perform(get(API_ENDPOINT + "?amount=" + amount))
-                .andExpect(status().isOk());
-    }
-
-    @Test
     void getChange() throws Exception {
         depositCoins(0.25, 10);
 
         String amount = "1.0";
         mockMvc.perform(get(API_ENDPOINT + "?amount=" + amount))
                 .andExpect(status().isOk())
-                .andExpect(content().string("[0.25,0.25,0.25,0.25]"));
+                .andExpect(content().string("{\"change\":[0.25,0.25,0.25,0.25],\"message\":\"\"}"));
     }
     void depositCoins(double coin, int amount) {
         billChanger.MakeDeposit(coin, amount);

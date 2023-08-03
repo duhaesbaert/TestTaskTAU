@@ -49,4 +49,14 @@ public class BillChangerTest {
         double amount = 5.0;
         assertThat(billChanger.getChange(amount, false).toString()).isEqualTo("[]");
     }
+
+    @Test
+    public void requestChangeForMoreThanPossessed() {
+        double amount = 5.0;
+        assertThat(billChanger.getChange(amount, false).toString()).isEqualTo("[]");
+
+        // now confirm that this value is not removed from coins available
+        amount = 1.0;
+        assertThat(billChanger.getChange(amount, false).toString()).isEqualTo("[0.25, 0.25, 0.25, 0.25]");
+    }
 }
